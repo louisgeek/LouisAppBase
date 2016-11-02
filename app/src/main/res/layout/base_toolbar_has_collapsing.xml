@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--layout_collapseMode (折叠模式) - 有两个值:layout_collapseParallaxMultiplier(视差因子) - 设置视差滚动因子，值为：0~1。
+pin -  设置为这个模式时，当CollapsingToolbarLayout完全收缩后，Toolbar还可以保留在屏幕上。
+parallax - 设置为这个模式时，在内容滚动时，CollapsingToolbarLayout中的View（比如ImageView)也可以同时滚动，实现视差滚动效果，
+通常和layout_collapseParallaxMultiplier(设置视差因子)搭配使用。-->
+
+<!--滚动事件标记 layout_scrollFlags-->
+<!--app:layout_scrollFlags属性里面必须至少启用scroll这个flag，这样这个view才会滚动出屏幕，
+否则它将一直固定在顶部。可以使用的其他flag有：
+enterAlways: 一旦向上滚动这个view就可见。
+enterAlwaysCollapsed: 顾名思义，这个flag定义的是何时进入（已经消失之后何时再次显示）。假设你定义了一个最小高度（minHeight）
+同时enterAlways也定义了，那么view将在到达这个最小高度的时候开始显示，并且从这个时候开始慢慢展开，当滚动到顶部的时候展开完。
+exitUntilCollapsed: 同样，这个flag时定义何时退出，当你定义了一个minHeight，这个view将在滚动到达这个最小高度的时候消失。-->
+
+<!--Overflow弹出主题：app:popupTheme-->
+<!-- 放入折叠 直接定义 height  不要android:minHeight="?attr/actionBarSize"  加入 app:layout_collapseMode="pin"
+默认不显示 android:visibility="gone"
+
+    android:background="?colorPrimary"  默认透明
+-->
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:visibility="gone"
+    app:layout_collapseMode="pin"
+    app:popupTheme="@style/ThemeOverlay.AppCompat"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:title="collapsing"
+    >
+    <!-- toolbar 定义了app:title="XXX" 就行  无需再配置自身文字
+    toolbar 内容开始区域有间距 16dp 可以设置个背景颜色看看
+     way one :  android:translationX="-16dp",让标题真正在Toolbar看起来是居中的
+     way two :  android:paddingRight="32dp" ...
+
+     2016年11月2日17:19:10  最外层使用LinearLayout 或者  RelativeLayout会影响CollapsingToolbarLayout的标题显示
+ -->
+    <!--居中  android:layout_width="match_parent"  android:gravity="center"-->
+    <TextView
+        android:id="@+id/id_toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:visibility="gone"
+        android:gravity="center"
+        android:paddingRight="32dp"
+        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        />
+
+</android.support.v7.widget.Toolbar>

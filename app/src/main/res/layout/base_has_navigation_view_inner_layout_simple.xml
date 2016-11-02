@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--常用简单主页面 不带 CoordinatorLayout  Toolbar 不可收起  DrawerLayout不覆盖Toolbar -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <include  layout="@layout/base_toolbar_normal" />
+
+    <!--常规  android:layout_below="@id/id_toolbar"  因为是include里面 所以加上+
+     android:layout_below="@+id/id_toolbar" -->
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/id_drawerLayout"
+        android:layout_below="@+id/id_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!--DrawerLayout内部的布局份有且只能两部分，主内容区域在上，侧滑栏区域在下面-->
+        <!--write content layout here-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/id_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:background="@color/colorAccent"
+                android:text="Hello World!  click me"/>
+
+            <TextView
+                android:text="背景部分"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+        <!--左侧菜单内容-->
+        <include layout="@layout/base_navigation_view_normal"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+</RelativeLayout>

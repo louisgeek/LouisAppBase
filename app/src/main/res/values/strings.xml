@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LouisAppBase</string>
+    <string name="app_ok">好</string>
+    <string name="app_confirm">确定</string>
+    <string name="app_cancel">取消</string>
+
+
+
+    <string name="base_menu_title">setting</string>
+
+    <string name="base_left_menu_title_1">one</string>
+    <string name="base_left_menu_title_2">two</string>
+    <string name="base_left_menu_title_3">three</string>
+
+    <string name="base_drawer_open">open</string>
+    <string name="base_drawer_close">close</string>
+
+    <string name="transition_name_imageview">transition_name_imageview</string>
+</resources>
