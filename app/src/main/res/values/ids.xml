@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="id_load_image_url_holder" type="id"/>
+    <item name="id_music_pause_image_state_holder" type="id"/>
+    <item name="id_music_model_image_state_holder" type="id"/>
+</resources>

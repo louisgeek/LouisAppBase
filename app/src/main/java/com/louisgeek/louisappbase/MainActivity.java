@@ -2,10 +2,13 @@ package com.louisgeek.louisappbase;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.louisgeek.louisappbase.base.BaseAppCompatAty;
+import com.louisgeek.louisappbase.data.TabHostShowData;
+import com.louisgeek.louisappbase.explores.MainExploreFragment;
+import com.louisgeek.louisappbase.jokes.MainJokeFragment;
+import com.louisgeek.louisappbase.news.MainNewsFragment;
 
 public class MainActivity extends BaseAppCompatAty {
 
@@ -45,22 +48,44 @@ public class MainActivity extends BaseAppCompatAty {
         return R.menu.base_menu_normal;
     }
 
+
+ /*   @Override
+    protected int setupTabLayoutResId() {
+        return R.id.id_tab_layout;
+    }
+
+    @Override
+    protected int setupViewPagerResId() {
+        return 0;
+    }*/
+
     @Override
     protected void initView() {
-        findById(R.id.id_tv).setOnClickListener(new View.OnClickListener() {
+     /*   findById(R.id.id_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startAty(NextActivity.class);
             }
-        });
+        });*/
 
-        setToolbarTitle("qqqqqqq");
+        kooSetToolbarTitle("qqqqqqq");
+
+        String[] xxx={"111","222","33","444"};
+       // setTabTitles(xxx);
+
     }
 
     @Override
-    protected boolean setupUseKLog() {
-        return false;
+    protected TabHostShowData setupTabHostData(){
+        TabHostShowData tabHostShowData=new TabHostShowData();
+        tabHostShowData.addFragmentClass(MainNewsFragment.class,R.drawable.tab_icon_new,R.string.base_main_menu_title_1);
+        tabHostShowData.addFragmentClass(MainJokeFragment.class,R.drawable.tab_icon_tweet,R.string.base_main_menu_title_2);
+        tabHostShowData.addFragmentClass(MainExploreFragment.class,R.drawable.tab_icon_explore,R.string.base_main_menu_title_3);
+        //tabHostShowData.addFragmentClass(MainMeFragment.class,R.drawable.tab_icon_me,R.string.base_main_menu_title_4);
+        return  tabHostShowData;
     }
+
+
 
     @Override
     protected boolean needEventBus() {
@@ -77,8 +102,16 @@ public class MainActivity extends BaseAppCompatAty {
         return true;
     }
 
+
+
+
     @Override
     protected void onNavigationViewItemSelected(MenuItem menuItem) {
         Toast.makeText(mContext, "xxx:"+menuItem.getItemId(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected boolean onOptionsItemSelectedOutter(MenuItem menuItem, boolean superBackValue) {
+        return superBackValue;
     }
 }

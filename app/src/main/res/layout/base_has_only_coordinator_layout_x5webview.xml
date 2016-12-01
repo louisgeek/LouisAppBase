@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--常用于简单详细页  可收起Toolbar-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 标题栏容器 -->
+    <android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <include layout="@layout/base_toolbar_normal_scroll_able_always"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- 内容Layout   在可以滚动的View上设置属性 app:layout_behavior 所对应的类控制着滑动的行为-->
+    <!--write content layout here-->
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/id_frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.tencent.smtt.sdk.WebView
+            android:id="@+id/id_x5webview"
+            android:layout_below="@id/id_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

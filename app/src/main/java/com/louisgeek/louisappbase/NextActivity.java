@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.louisgeek.louisappbase.base.BaseAppCompatAty;
+import com.louisgeek.louisappbase.data.TabHostShowData;
 
 public class NextActivity extends BaseAppCompatAty {
 
@@ -41,6 +42,13 @@ public class NextActivity extends BaseAppCompatAty {
         return R.menu.base_menu_normal;
     }
 
+
+
+    @Override
+    protected TabHostShowData setupTabHostData() {
+        return null;
+    }
+
     @Override
     protected void initView() {
 
@@ -71,11 +79,6 @@ public class NextActivity extends BaseAppCompatAty {
     }
 
     @Override
-    protected boolean setupUseKLog() {
-        return false;
-    }
-
-    @Override
     protected boolean needEventBus() {
         return false;
     }
@@ -90,9 +93,15 @@ public class NextActivity extends BaseAppCompatAty {
         return false;
     }
 
+
     @Override
     protected void onNavigationViewItemSelected(MenuItem menuItem) {
 
+    }
+
+    @Override
+    protected boolean onOptionsItemSelectedOutter(MenuItem menuItem, boolean superBackValue) {
+        return superBackValue;
     }
 
 }

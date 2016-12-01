@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CheckAppUpdateLib/CheckAppUpdateLib.iml" filepath="$PROJECT_DIR$/CheckAppUpdateLib/CheckAppUpdateLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HeaderAndFooterRVLib/HeaderAndFooterRVLib.iml" filepath="$PROJECT_DIR$/HeaderAndFooterRVLib/HeaderAndFooterRVLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HttpLib/HttpLib.iml" filepath="$PROJECT_DIR$/HttpLib/HttpLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/LouisAppBase.iml" filepath="$PROJECT_DIR$/LouisAppBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MultiEditTextViewLib/MultiEditTextViewLib.iml" filepath="$PROJECT_DIR$/MultiEditTextViewLib/MultiEditTextViewLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#221725">
+
+    <RelativeLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#36223b">
+
+        <ImageView
+            android:id="@+id/id_iv_album"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="center"
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/id_iv_album"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp">
+            <TextView
+                android:id="@+id/id_textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="xxxxxxxxx"/>
+
+            <TextView
+                android:id="@+id/id_textSinger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_textName"
+                android:layout_marginTop="2dp"
+                android:textColor="#80FFFFFF"
+                android:text="submitted by Bruce Diaz"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/id_iv_yl"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_more_vert_white_36dp"/>
+
+    </RelativeLayout>
+
+ <com.louisgeek.louisappbase.custom.KooLrcView
+     android:id="@+id/id_klv"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+
+
+    <RelativeLayout
+        android:id="@+id/tb_music_kongzhi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_klv"
+        android:layout_centerVertical="true">
+
+
+        <ImageView
+            android:id="@+id/id_iv_Control"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/selector_music_icon_pause"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+
+        <ImageView
+            android:id="@+id/id_iv_Next"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/selector_music_icon_next"
+            android:layout_toRightOf="@+id/id_iv_Control"
+            android:layout_marginLeft="50dp"
+            android:layout_centerVertical="true"/>
+
+
+        <ImageView
+            android:id="@+id/id_iv_Previous"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/selector_music_icon_pre"
+            android:layout_toLeftOf="@+id/id_iv_Control"
+            android:layout_marginRight="50dp"
+            android:layout_centerVertical="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tb_music_other"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tb_music_kongzhi"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:layout_height="25dp">
+
+        <ImageView
+            android:id="@+id/id_iv_model"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_cached_black_18dp"
+            />
+
+
+        <TextView
+            android:id="@+id/tb_music_ci"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="词"
+            android:layout_marginRight="20dp"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/vol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tb_music_kongzhi"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_volume_down_white_36dp"
+            />
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_sb_vol"
+            />
+        </RelativeLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tb_progress_tbmusic"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

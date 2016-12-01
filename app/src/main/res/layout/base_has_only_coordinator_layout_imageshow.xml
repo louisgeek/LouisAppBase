@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--常用于简单详细页  可收起Toolbar-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 标题栏容器 -->
+    <android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/id_appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <include layout="@layout/base_toolbar_normal_scroll_able"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- 内容Layout   在可以滚动的View上设置属性 app:layout_behavior 所对应的类控制着滑动的行为-->
+    <!--write content layout here-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!--弹出框-->
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/id_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#121212"
+        android:clipToPadding="true"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        >
+        <!--此处用于填充BottomSheets的自定义样式-->
+        <TextView
+            android:id="@+id/id_bottom_sheet_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:text="底部动作条(Bottom Sheets)特别适合有三个或者三个以上的操作需要提供给用户选择、并且不需要对操作有额外解释的情景。如果只有两个或者更少的操作，或者需要详加描述的，可以考虑使用菜单(Menu)或者对话框替代。底部动作条(Bottom Sheets)可以是列表样式的也可以是宫格样式的。宫格布局可以增加视觉的清晰度。你可以使用底部动作条(Bottom Sheets)展示和其 app 相关的操作，比如做为进入其他 app 的入口(通过 app 的 icon 进入)。"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="16sp"/>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

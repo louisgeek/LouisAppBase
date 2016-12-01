@@ -10,7 +10,7 @@
     tools:context="com.louisgeek.louisappbase.MainActivity">
 
 
-  <!--  <include layout="@layout/base_has_navigation_view_inner_layout_normal"/>-->
-    <include layout="@layout/base_has_navigation_view_inner_layout_simple"/>
+  <include layout="@layout/base_has_navigation_view_inner_layout_normal"/>
+  <!--   <include layout="@layout/base_has_navigation_view_inner_layout_simple"/>-->
 
 </LinearLayout>

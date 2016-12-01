@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".main.widget.MainActivity">
+    <item
+        android:id="@+id/id_menu_item_show_image_dir"
+        android:orderInCategory="100"
+        android:title="@string/menu_item_show_image_dir_title"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/id_menu_item_show_image_finish"
+        android:orderInCategory="100"
+        android:title="@string/menu_item_show_image_dir_finish"
+        app:showAsAction="always"
+        />
+</menu>

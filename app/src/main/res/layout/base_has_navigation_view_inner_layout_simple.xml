@@ -22,20 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/id_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="20dp"
-                android:background="@color/colorAccent"
-                android:text="Hello World!  click me"/>
 
-            <TextView
-                android:text="背景部分"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+            <include
+                layout="@layout/base_fragment_tab_host_normal"/>
         </FrameLayout>
 
         <!--左侧菜单内容-->

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--常用于简单详细页  可收起Toolbar-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 标题栏容器 -->
+    <android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <include layout="@layout/base_toolbar_normal"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- 内容Layout   在可以滚动的View上设置属性 app:layout_behavior 所对应的类控制着滑动的行为-->
+    <!--write content layout here-->
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/id_frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <com.louisgeek.headerandfooterrecycleviewlib.RecyclerViewWithEmpty
+                android:id="@+id/id_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                />
+            <include
+                android:id="@+id/id_recyclerview_empty_view"
+                layout="@layout/recyclerview_empty_view"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent"/>
+            </RelativeLayout>
+            <!--黑色蒙版 0  默认透明  注意外面布局android:fillViewport="true"-->
+            <View
+                android:id="@+id/id_view_background"
+                android:background="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                />
+            <!--存放文件夹的-->
+            <com.louisgeek.headerandfooterrecycleviewlib.RecyclerViewWithEmpty
+                android:id="@+id/id_recyclerview_dir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clipChildren="true"
+                />
+
+        </FrameLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

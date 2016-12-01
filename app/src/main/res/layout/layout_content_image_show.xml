@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@android:color/background_dark"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <!-- android:layout_marginBottom="?attr/actionBarSize" 偏移而已 和其他无关-->
+    <uk.co.senab.photoview.PhotoView
+        android:id="@+id/id_photo_view"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:src="@mipmap/ic_image_load_failed"
+        android:scaleType="fitCenter"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

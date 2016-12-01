@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.louisgeek.louisappbase.StartActivity">
+
+
+    <com.louisgeek.louisappbase.custom.KooLrcView
+        android:id="@+id/id_koolrc"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+
+        <Button
+            android:id="@+id/id_simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="simple"
+            />
+
+        <Button
+            android:id="@+id/id_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="normal"
+            />
+
+        <Button
+            android:id="@+id/id_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="news"
+            />
+
+        <Button
+            android:id="@+id/id_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="web"
+            />
+
+        <Button
+            android:id="@+id/id_x5web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="x5web"
+            />
+
+        <Button
+            android:id="@+id/id_music"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="music"
+            />
+
+        <Button
+            android:id="@+id/id_localimages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="localimages"
+            />
+
+        <Button
+            android:id="@+id/id_netImages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="netImages"
+            />
+
+        <Button
+            android:id="@+id/id_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reader"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

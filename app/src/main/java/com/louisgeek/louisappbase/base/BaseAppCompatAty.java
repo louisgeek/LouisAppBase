@@ -7,21 +7,26 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.jude.swipbackhelper.SwipeBackHelper;
-import com.louisgeek.louisappbase.KooApplication;
 import com.louisgeek.louisappbase.R;
+import com.louisgeek.louisappbase.custom.FragmentTabHostUnDestroyFragmentSupport;
+import com.louisgeek.louisappbase.data.TabHostShowData;
 import com.socks.library.KLog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -60,6 +65,8 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
 
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,15 +93,25 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
         mScreenDensity = displayMetrics.density;
         mScreenWidth = displayMetrics.widthPixels;
         mScreenHeight = displayMetrics.heightPixels;
+        KLog.d("mScreenDensity:"+mScreenDensity);
+        KLog.d("mScreenWidth:"+mScreenWidth);
+        KLog.d("mScreenHeight:"+mScreenHeight);
 
 
         if (setupToolbarResId() != 0) {
             initToolbar();
-
+            //DrawerLayout 依托 Toolbar
             if (setupDrawerLayoutResId() != 0) {
                 initDrawerLayout();
             }
         }
+
+
+        if (setupTabHostData()!=null){
+            setupTabHost();
+        }
+
+
 
 
         /**
@@ -117,7 +134,7 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
         /**
          * setToolbarTitle
          */
-        setToolbarTitle(mToolbar.getTitle() != null ? mToolbar.getTitle().toString() : "");
+        kooSetToolbarTitle(mToolbar.getTitle() != null ? mToolbar.getTitle().toString() : "");
 
         mToolbar.setVisibility(View.VISIBLE);
         //替换ActionBar
@@ -170,6 +187,69 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
         }
     }
 
+
+
+    private void setupTabHost() {
+        //boolean hasCenterBtn=true;
+        TabHostShowData tabHostShowData=setupTabHostData();
+        //
+        if (tabHostShowData==null||tabHostShowData.getFragmentClassesList()==null||tabHostShowData.getFragmentClassesList().size()<=0){
+            return;
+        }
+        FragmentTabHostUnDestroyFragmentSupport mFragmentTabHostUnDestroyFragmentSupport= (FragmentTabHostUnDestroyFragmentSupport) findViewById(android.R.id.tabhost);
+        for (int i = 0; i < tabHostShowData.getFragmentClassesList().size(); i++) {
+            TabHost.TabSpec tabSpec=mFragmentTabHostUnDestroyFragmentSupport.newTabSpec(getString(tabHostShowData.getImageResIDList().get(i)));
+            View indicatorView=buildIndicatorView(getString(tabHostShowData.getTabLabelResIDList().get(i)),
+                    tabHostShowData.getImageResIDList().get(i));
+            //
+          /*   ImageView   id_iv_main_center= (ImageView) findViewById(R.id.id_iv_main_center);
+           if (hasCenterBtn){
+              id_iv_main_center.setVisibility(View.VISIBLE);
+            //R.string.tab_label_add hide
+            if (i==2){
+                *//**占位*//*
+                indicatorView.setVisibility(View.INVISIBLE);
+            }
+            }else{
+                id_iv_main_center.setVisibility(View.GONE);
+            }*/
+            tabSpec.setIndicator(indicatorView);
+            /*另一种FragmentTabHost布局方式见：https://code.csdn.net/snippets/1958337 */
+            //mFragmentTabHost.setup(this,getSupportFragmentManager(),R.id.realtabcontent);
+            mFragmentTabHostUnDestroyFragmentSupport.setup(this,getSupportFragmentManager(),android.R.id.tabcontent);
+            //Bundle 会传给底层的Fragment的实例创建  可以传递参数 b;传递公共的userid,version,sid   可以为null
+            Bundle bundle=new Bundle();
+            bundle.putString("name",i+"XX");
+            mFragmentTabHostUnDestroyFragmentSupport.addTab(tabSpec,tabHostShowData.getFragmentClassesList().get(i),bundle);
+        }
+        mFragmentTabHostUnDestroyFragmentSupport.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+        mFragmentTabHostUnDestroyFragmentSupport.getTabWidget().setBackgroundColor(ContextCompat.getColor(this,android.R.color.white));
+
+        //mFragmentTabHost.getTabWidget().getChildAt()
+        /**
+         * 当叶卡超过1个的时候才显示底部标记
+         */
+        if (tabHostShowData.getFragmentClassesList().size()>1){
+            mFragmentTabHostUnDestroyFragmentSupport.getTabWidget().setVisibility(View.VISIBLE);
+        }else{
+            mFragmentTabHostUnDestroyFragmentSupport.getTabWidget().setVisibility(View.GONE);
+        }
+        mFragmentTabHostUnDestroyFragmentSupport.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                KLog.d("onTabChanged:"+tabId);
+
+            }
+        });
+    }
+    private View buildIndicatorView(String title,int imgResID) {
+        View view= LayoutInflater.from(this).inflate(R.layout.base_fragment_tab_host_indicator_normal,null,false);
+        ImageView imageView= (ImageView) view.findViewById(R.id.id_iv_indicator);
+        TextView textView= (TextView) view.findViewById(R.id.id_tv_indicator);
+        imageView.setImageResource(imgResID);
+        textView.setText(title);
+        return view;
+    }
 
     @Override
     protected void onStart() {
@@ -230,7 +310,15 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
             finish();
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        /**
+         * 把父类返回值 保存  提供onOptionsItemSelectedOutter使用
+         */
+        boolean superBackValue=super.onOptionsItemSelected(item);
+        /**
+         * 实现时候 记得   return superBackValue;
+         */
+        return  onOptionsItemSelectedOutter(item,superBackValue);
+        //return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -260,9 +348,10 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
     protected abstract int setupMenuResId();
 
 
-    protected abstract void initView();
+    protected abstract TabHostShowData setupTabHostData();
 
-    protected abstract boolean setupUseKLog();
+
+    protected abstract void initView();
 
     protected abstract boolean needEventBus();
 
@@ -270,7 +359,11 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
 
     protected abstract boolean setupToolbarTitleCenter();
 
+//    protected abstract KooFragmentPagerAdapter setupKooFragmentPagerAdapter();
+
     protected abstract void onNavigationViewItemSelected(MenuItem menuItem);
+
+    protected abstract boolean onOptionsItemSelectedOutter(MenuItem menuItem,boolean superBackValue);
 
     /**
      * Find View
@@ -283,33 +376,6 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
         return (V) view.findViewById(id);
     }
 
-
-    /**
-     * KLog & Log
-     *
-     * @param logMsg
-     */
-    protected void logD(String logMsg) {
-        if (!KooApplication.isDebug()) {
-            return;
-        }
-        if (setupUseKLog()) {
-            KLog.d(mLogTag, logMsg);
-        } else {
-            Log.d(mLogTag, logMsg);
-        }
-    }
-
-    protected void logE(String logMsg) {
-        if (!KooApplication.isDebug()) {
-            return;
-        }
-        if (setupUseKLog()) {
-            KLog.e(mLogTag, logMsg);
-        } else {
-            Log.e(mLogTag, logMsg);
-        }
-    }
 
     /**
      *  Snackbar将遍历整个view tree来寻找一个合适的view，可能是
@@ -335,7 +401,7 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
     }
 
 
-    protected void setToolbarTitle(String string) {
+    protected void kooSetToolbarTitle(String string) {
         if (setupToolbarTitleCenter()) {
             if (mToolbar_title_view != null) {
                 mToolbar_title_view.setText(string);
@@ -356,6 +422,7 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
             }
         }
     }
+    @Deprecated
     protected String getToolbarTitle(){
         String backStr="";
         if (mToolbar!=null){
@@ -381,6 +448,4 @@ public abstract class BaseAppCompatAty extends AppCompatActivity {
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
     }
-
-
 }
